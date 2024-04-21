@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhw5aoiftg3rk"]
+
+[ext_resource type="Script" path="res://Scripts/Truckkun.gd" id="1_txhah"]
+[ext_resource type="ArrayMesh" uid="uid://cx3fnd81fmyj7" path="res://Art/ludum55_Cube.res" id="1_y5vdi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4d5sa"]
+size = Vector3(3.64078, 4.97675, 9.59348)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rulnj"]
+size = Vector3(4.01582, 3.51416, 10.1492)
+
+[node name="Truck" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28578, 0.919875, 1.02553)
+script = ExtResource("1_txhah")
+
+[node name="Ludum55Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.438865, 0, 1.33045)
+mesh = ExtResource("1_y5vdi")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.948927, 0.11078, 3.05495)
+light_color = Color(0.854902, 0, 0.129412, 1)
+light_energy = 22.7
+light_volumetric_fog_energy = 18.279
+spot_range = 6.16388
+spot_angle = 20.0462
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.72342, 0.0253927, 3.19037)
+light_color = Color(0.854902, 0, 0.129412, 1)
+light_energy = 29.8
+light_volumetric_fog_energy = 21.894
+spot_range = 6.16388
+spot_angle = 20.0462
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.440482, 1.32175, -1.98787)
+shape = SubResource("BoxShape3D_4d5sa")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.440482, 1.32175, -1.98787)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037755, -0.551259, 0.109446)
+shape = SubResource("BoxShape3D_rulnj")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

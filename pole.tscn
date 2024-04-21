@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbn4ed3ik0bls"]
+
+[ext_resource type="ArrayMesh" uid="uid://dx45kupkbblec" path="res://Art/ludum55_Cube_003.res" id="1_f2275"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sdtj5"]
+radius = 0.396913
+height = 9.34867
+
+[node name="Pole" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_f2275")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
+transform = Transform3D(-8.74228e-08, 1.87334, -0.700415, 0, 0.700415, 1.87334, 2, 8.18865e-08, -3.06161e-08, 1.60228, 10.3197, -0.0355358)
+light_color = Color(0.788235, 0.65098, 0, 1)
+light_energy = 26.05
+light_volumetric_fog_energy = 31.9
+spot_range = 6.92551
+spot_angle = 22.7072
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84954, 0)
+shape = SubResource("CapsuleShape3D_sdtj5")

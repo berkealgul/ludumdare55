@@ -1,0 +1,151 @@
+[gd_scene load_steps=19 format=3 uid="uid://oh0k3y6km5mq"]
+
+[ext_resource type="PackedScene" uid="uid://l84lq5kfatrg" path="res://player.tscn" id="1_0ut2u"]
+[ext_resource type="ArrayMesh" uid="uid://jxy1ilr8pw8q" path="res://Art/ludum55_Plane_002.res" id="1_rvakb"]
+[ext_resource type="Texture2D" uid="uid://derexsrdwjnbk" path="res://Art/skyboxes/Epic_BlueSunset_EquiRect_flat.png" id="1_y7b17"]
+[ext_resource type="ArrayMesh" uid="uid://cc0mnx3fg4haf" path="res://Art/ludum55_Plane_001.res" id="4_5udqj"]
+[ext_resource type="ArrayMesh" uid="uid://myhuv6cqyssr" path="res://Art/ludum55_Cylinder.res" id="5_jx4ft"]
+[ext_resource type="PackedScene" uid="uid://dpfnu035uck22" path="res://tree1.tscn" id="8_i5la7"]
+[ext_resource type="PackedScene" uid="uid://b7dtg2aircbs2" path="res://tree2.tscn" id="9_0j18u"]
+[ext_resource type="PackedScene" uid="uid://bocd4v6y6n17" path="res://tree3.tscn" id="10_llvdg"]
+[ext_resource type="PackedScene" uid="uid://dbn4ed3ik0bls" path="res://pole.tscn" id="11_t8meh"]
+[ext_resource type="PackedScene" uid="uid://bhw5aoiftg3rk" path="res://truck.tscn" id="11_udyem"]
+[ext_resource type="PackedScene" uid="uid://ckdyf2bpbnv2f" path="res://TruckSpawner.tscn" id="12_1au4t"]
+[ext_resource type="ArrayMesh" uid="uid://cyds4f4g8kwu4" path="res://Art/ludum55_Cube_005.res" id="12_k4duc"]
+[ext_resource type="PackedScene" uid="uid://bxrjbdkse4bi" path="res://lose.tscn" id="13_uflb6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lnn3s"]
+panorama = ExtResource("1_y7b17")
+
+[sub_resource type="Sky" id="Sky_wbgkn"]
+sky_material = SubResource("PanoramaSkyMaterial_lnn3s")
+
+[sub_resource type="Environment" id="Environment_wial3"]
+background_mode = 2
+sky = SubResource("Sky_wbgkn")
+volumetric_fog_enabled = true
+volumetric_fog_gi_inject = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kgp3n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_itnew"]
+size = Vector3(3.38635, 0.439697, 5.59155)
+
+[node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.868393, -0.762581, -0.391678)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.997662, -0.0683461, 0, 0.0683461, 0.997662, 0, 0, 0, 1, -181.262, 368.218, 0.391678)
+light_energy = 2.293
+
+[node name="FogVolume" type="FogVolume" parent="World"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_wial3")
+camera_attributes = SubResource("CameraAttributesPractical_kgp3n")
+
+[node name="Poles" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -226.138, -1.0212, 19.6228)
+
+[node name="Pole" parent="Poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.5937)
+
+[node name="Pole2" parent="Poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72.1267)
+
+[node name="Pole3" parent="Poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.8881)
+
+[node name="poles" type="Node3D" parent="Poles"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.593, 0.0646713, 37.9875)
+
+[node name="Pole" parent="Poles/poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.5937)
+
+[node name="Pole2" parent="Poles/poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72.1267)
+
+[node name="Pole3" parent="Poles/poles" instance=ExtResource("11_t8meh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.8881)
+
+[node name="Builds" type="Node3D" parent="."]
+
+[node name="Ludum55Plane002" type="MeshInstance3D" parent="Builds"]
+transform = Transform3D(0.832, 0, 0, 0, 0.832, 0, 0, 0, 1.05, -236.314, -1.2117, 0.00196496)
+mesh = ExtResource("4_5udqj")
+skeleton = NodePath("")
+
+[node name="Ludum55Cylinder" type="MeshInstance3D" parent="Builds"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -257.858, 2.47093, -32.355)
+mesh = ExtResource("5_jx4ft")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Builds"]
+transform = Transform3D(1.05, 0, 0, 0, 0.625, 0, 0, 0, 1.035, -306.777, -1.45212, 0)
+mesh = ExtResource("1_rvakb")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="StaticBody3D" parent="Builds/MeshInstance3D"]
+collision_layer = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Builds/MeshInstance3D/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 68.8295, -10.6545, -31.4147)
+shape = SubResource("BoxShape3D_itnew")
+
+[node name="Tree4" parent="Builds/MeshInstance3D" instance=ExtResource("9_0j18u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 110.951, 0.337926, -80.8414)
+
+[node name="Ludum55Cube005" type="MeshInstance3D" parent="Builds"]
+transform = Transform3D(-0.71, 0, -6.20702e-08, 0, 0.71, 0, 6.20702e-08, 0, -0.71, -194.224, 4.18492, 84.0589)
+mesh = ExtResource("12_k4duc")
+skeleton = NodePath("../..")
+
+[node name="Trees" type="Node3D" parent="."]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -278.738, -1.45212, 0)
+
+[node name="Tree1" parent="Trees" instance=ExtResource("8_i5la7")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -7.298, 0.337926, 21.799)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("9_0j18u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 44.8134, -4.41684, 65.5193)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("10_llvdg")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 39.7419, 0.337926, -16.2415)
+
+[node name="Tree3" parent="Trees/Tree3" instance=ExtResource("10_llvdg")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -26.2082, 0.337926, -81.1057)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("9_0j18u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 137.621, 0.337926, -59.4574)
+
+[node name="Tree4" parent="Trees/Tree4" instance=ExtResource("9_0j18u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 137.621, 0.337926, -59.4574)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("8_i5la7")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 111.597, 0.337926, -83.5022)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("10_llvdg")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 17.3527, 0.337926, 82.4574)
+
+[node name="Tree7" parent="Trees/Tree7" instance=ExtResource("10_llvdg")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -11.3824, 0.337926, 40.0617)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("8_i5la7")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 119.565, 0.599483, 40.7196)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_0ut2u")]
+transform = Transform3D(0.999134, 0, -0.041614, 0, 1, 0, 0.041614, 0, 0.999134, -238.977, 2.45461, 37.0746)
+
+[node name="Truck" parent="." instance=ExtResource("11_udyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -232.061, 0.472981, 9.51009)
+
+[node name="GameManager" parent="." instance=ExtResource("12_1au4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -236.419, 4.80384, 42.3494)
+
+[node name="Control" parent="." instance=ExtResource("13_uflb6")]
+
+[connection signal="restartTruck" from="Player" to="Truck" method="_on_player_restart_truck"]
+[connection signal="player_dead" from="Truck" to="Player" method="_on_truck_player_dead"]
+[connection signal="restart" from="Control" to="Player" method="_on_lose_menu_restart"]

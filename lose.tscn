@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxrjbdkse4bi"]
+
+[ext_resource type="Script" path="res://lose.gd" id="1_2pvu5"]
+
+[sub_resource type="Theme" id="Theme_anejr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_11cvs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_06lq8"]
+font_color = Color(0.898039, 0.615686, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_anejr")
+script = ExtResource("1_2pvu5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+material = SubResource("CanvasItemMaterial_11cvs")
+layout_mode = 2
+text = "You got Isekaid by Truck-Kun"
+label_settings = SubResource("LabelSettings_06lq8")
+
+[node name="res" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/res" to="." method="_on_res_button_down"]
